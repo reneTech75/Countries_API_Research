@@ -1,0 +1,57 @@
+STEP 2.
+QUESTION 1
+Is the top-level response a list, or a dict with a list inside it?
+
+ANSWER.
+The top level response is a list.
+
+QUESTION 2
+What fields does each record have?
+
+ANSWER.
+The fields that are present in the records are:
+
+area
+cioc
+flag
+gini
+maps
+name
+flags
+latlng
+region
+borders
+capital
+demonym
+languages
+subregion
+timezones
+alpha2Code
+alpha3Code
+currencies
+nativename
+population
+independent
+numericCode
+altSpellings
+topLevelDomain
+population density
+
+
+QUESTION 3
+Are any fields nested — dicts inside dicts, or lists inside dicts?
+
+ANSWER:
+Yes some fields are nested, for example:
+languages":[{"name":"Swedish","iso639_1":"sv","iso639_2":"swe","nativeName":"svenska"}], we see that "name" field appears agian inside the dictionary that is in the list called languages.
+
+QUESTION 4
+Are any fields missing or null for some records?
+Yes, some fields are missing or null, for instance, "cioc" is found in the first record, but missing from the second record. 
+
+
+
+STEP 3
+My application will return to the user all countries in the world from the countries.dev API that speak a certain language, and have a population density of at least some number x. I will also verify from the internal API data that the reported value for the population density was correctly calculated. I will use the population and area of each country to calculate this and compare it with the values found in the records. A user who runs my program will enter the name of the country's language, and the desired population density cut-off point. The program will print the rsults in a tabular format for easy viewing and comparison.
+
+STEP 4
