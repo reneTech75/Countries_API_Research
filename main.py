@@ -1,7 +1,10 @@
 #this is the main application. other modules will be called from her.
 import requests
+import sys
 
-base_url = "https://countries.dev/countries"
+sys.stdout.reconfigure(encoding = 'utf-8') #this ensures that the terminal will print Arabic, Asian, and emoji characters.
+
+url = "https://countries.dev/countries"
 
 #this function collects the inputs from the user at the terminal
 def get_user_inputs():
@@ -15,15 +18,15 @@ def get_user_inputs():
            }
 
 def fetch_data(user_inputs):
-    url = f"{base_url}/{id}"
     response = requests.get(url)
+    print(response)
 
 
 
 
 def main():
-    user_inputs = get_user_inputs()
-    fetch_data(user_inputs)
+    user_inputs = get_user_inputs() #get the inputs from the user
+    fetch_data(user_inputs) #get relevant records from the API provider
 
 
 if __name__ == "__main__":
