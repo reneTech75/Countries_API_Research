@@ -4,7 +4,7 @@ import sys
 
 sys.stdout.reconfigure(encoding = 'utf-8') #this ensures that the terminal will print Arabic, Asian, and emoji characters.
 
-url = "https://countries.dev/countries"
+#url = "https://countries.dev/countries"
 
 #this function collects the inputs from the user at the terminal
 def get_user_inputs():
@@ -13,12 +13,14 @@ def get_user_inputs():
     return {"country": country}
 
 def fetch_data(user_input):
+    url = f"https://countries.dev/countries/name/{user_input['country']}"
     response = requests.get(url)
-    all_data = response.json()
-    for item in all_data:
-        if item["name"].lower() == user_input["country"]:
-            return item
-    return "Unfortunately, there is no data on the country your provided"
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    return {"error": f"data for {user_input['country']} could not be located"}
+    
+    
 
 
 
