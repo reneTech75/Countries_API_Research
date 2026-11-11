@@ -14,11 +14,15 @@ def get_user_inputs():
 
 def fetch_data(user_input):
     response = requests.get(url)
-    all_data = response.json()
+    all_data = response.json() #converts JSON string into python object
     for item in all_data:
         if item["name"].lower() == user_input["country"]:
             return item
     return "Unfortunately, there is no data on the country your provided"
+
+def get_summary(metrics):
+    return f"{metrics['country']} is a country in {metrics['region']}, with a population of {metrics['population']}. It has {len(metrics['languages'])} official language(s)"
+
 
 
 
@@ -26,7 +30,24 @@ def fetch_data(user_input):
 def main():
     user_input = get_user_inputs() #get the inputs from the user
     data = fetch_data(user_input) #get relevant records from the API provider
-    print(data)
+    region = data["region"]
+    capital = data["capital"]
+    population = data["population"]
+    languages = data["languages"]
+    
+    metrics = {
+        "country": user_input["country"],
+        "region": region,
+        "capital": capital,
+        "population": population,
+        "languages": languages
+    }
+
+    summary = get_summary(metrics)
+    
+    
+    #print(data)
+    print(summary)
 
 
 if __name__ == "__main__":

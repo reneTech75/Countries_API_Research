@@ -4,6 +4,7 @@ import sys
 sys.stdout.reconfigure(encoding = 'utf-8')
 
 response = requests.get("https://countries.dev/countries")
+print(response.status_code)
 
-data = response.json()
-print(data)
+#data = response.json()
+#print(data)
