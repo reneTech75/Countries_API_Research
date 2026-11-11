@@ -43,7 +43,9 @@ def fetch_data(user_input):
 
     except requests.exceptions.RequestException as error:
         return {"error": f"Connection error: {error}"}
-    
+
+def get_summary(metrics):
+    return f"{metrics['country']} is a country in {metrics['region']}, with a population of {metrics['population']}. It has {len(metrics['languages'])} official language(s)"
     
 
 
