@@ -13,8 +13,12 @@ def get_user_inputs():
     return {"country": country}
 
 def fetch_data(user_input):
-    url = f"https://countries.dev/countries/name/{user_input['country']}"
-    response = requests.get(url)
+
+    params = {
+        "name": user_input["country"]
+    }
+    url = "https://countries.dev/countries"
+    response = requests.get(url, params = params)
     if response.status_code == 200:
         data = response.json()
         return data
