@@ -1,5 +1,6 @@
 #this is the main application. other modules will be called from her.
 import requests
+from urllib.parse import quote #we need this because the names of some countries haves spaces
 import sys
 
 sys.stdout.reconfigure(encoding = 'utf-8') #this ensures that the terminal will print Arabic, Asian, and emoji characters.
@@ -14,15 +15,34 @@ def get_user_inputs():
 
 def fetch_data(user_input):
 
-    params = {
-        "name": user_input["country"]
-    }
-    url = "https://countries.dev/countries"
-    response = requests.get(url, params = params)
-    if response.status_code == 200:
-        data = response.json()
-        return data
-    return {"error": f"data for {user_input['country']} could not be located"}
+    country = user_input["country"]
+
+    # Encode the country name for use in a URL
+    url = f"https://countries.dev/name/{quote(country, safe='')}"
+
+    try:
+        response = requests.get(url, timeout=10) # we wait for a response no longer than 10s
+
+        if response.status_code == 200:
+            data = response.json()
+            for record in data:
+                if record["name"].lower() == country:
+                    return record
+            return {"error": f"No exact match found for {country}"}
+            
+
+        elif response.status_code == 404:
+            return {"error": f"Country {country} could not be located"}
+            
+        else:
+            return {"error": f"API request failed: {response.status_code}"}
+        
+
+    except requests.exceptions.Timeout:
+        return {"error": "The API request timed out"}
+
+    except requests.exceptions.RequestException as error:
+        return {"error": f"Connection error: {error}"}
     
     
 
