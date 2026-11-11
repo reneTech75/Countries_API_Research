@@ -8,25 +8,25 @@ url = "https://countries.dev/countries"
 
 #this function collects the inputs from the user at the terminal
 def get_user_inputs():
-    country = input("Please enter the name of the country:\n").lower() 
-    language = input("Please enter a language:\n").lower()
-    density = float(input("please enter the desired population density:\n"))
+    country = input("Please enter the name of the country you are researching:\n").strip().lower() 
 
-    return {"country": country,
-            "language": language,
-            "population_density": density
-           }
+    return {"country": country}
 
-def fetch_data(user_inputs):
+def fetch_data(user_input):
     response = requests.get(url)
-    print(response)
+    all_data = response.json()
+    for item in all_data:
+        if item["name"].lower() == user_input["country"]:
+            return item
+    return "Unfortunately, there is no data on the country your provided"
 
 
 
 
 def main():
-    user_inputs = get_user_inputs() #get the inputs from the user
-    fetch_data(user_inputs) #get relevant records from the API provider
+    user_input = get_user_inputs() #get the inputs from the user
+    data = fetch_data(user_input) #get relevant records from the API provider
+    print(data)
 
 
 if __name__ == "__main__":
