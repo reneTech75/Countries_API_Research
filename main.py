@@ -54,6 +54,7 @@ def get_summary(metrics):
 def main():
     user_input = get_user_inputs() #get the inputs from the user
     data = fetch_data(user_input) #get relevant records from the API provider
+    print(data)
     region = data["region"]
     capital = data["capital"]
     population = data["population"]

@@ -6,9 +6,10 @@ response = requests.get("https://countries.dev/countries")
 data = response.json()
 
 for item in data:
-    if item["name"].lower() == "cameroon":
+    if item["name"].lower() == "usa":
         infor = json.dumps(item, ensure_ascii=True, indent=2)
         print(infor)
+        print(item["region"])
 
 
 # json.dumps ensures characters are safely converted to text formatting your terminal can display
