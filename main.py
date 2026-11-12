@@ -15,6 +15,7 @@ def get_user_inputs():
         sys.exit("The program will stop now, come back when you have the name of a country!!!")
     return {"country": country}
 
+#this function fetches the record of the country of interest
 def fetch_data(user_input):
 
     country = user_input["country"]
@@ -47,7 +48,7 @@ def fetch_data(user_input):
 def get_summary(metrics):
     return f"{metrics['country']} is a country in {metrics['region']}, with a population of {metrics['population']}. It has {len(metrics['languages'])} official language(s)"
     
-
+#this main function will direct the main logic flow of this program.
 def main():
     user_input = get_user_inputs() #get the inputs from the user
     data = fetch_data(user_input) #get relevant records from the API provider
