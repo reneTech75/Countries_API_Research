@@ -12,6 +12,7 @@ print(response.status_code)
 data = response.json()
 print(data)
 
+<<<<<<< HEAD
 
 
 
@@ -19,6 +20,13 @@ print(data)
 #     if item["name"].lower() == "cameroon":
 #         infor = json.dumps(item, ensure_ascii=True, indent=2)
 #         print(infor)
+=======
+for item in data:
+    if item["name"].lower() == "usa":
+        infor = json.dumps(item, ensure_ascii=True, indent=2)
+        print(infor)
+        print(item["region"])
+>>>>>>> tests
 
 
 # json.dumps ensures characters are safely converted to text formatting your terminal can display
