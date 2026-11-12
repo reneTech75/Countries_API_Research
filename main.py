@@ -19,7 +19,7 @@ def fetch_data(user_input):
 
     country = user_input["country"]
 
-    # Encode the country name for use in a URL, this API provider doesn't accept parameters
+    # Encode the country name in a URL, this API provider doesn't accept query parameters
     url = f"https://countries.dev/name/{quote(country, safe='')}"
 
     try:
