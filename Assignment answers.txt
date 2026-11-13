@@ -52,6 +52,6 @@ Yes, some fields are missing or null, for instance, "cioc" is found in the first
 
 
 STEP 3
-My application will return to the user all countries in the world from the countries.dev API that speak a certain language, and have a population density of at least some number x. I will also verify from the internal API data that the reported value for the population density was correctly calculated. I will use the population and area of each country to calculate this and compare it with the values found in the records. A user who runs my program will enter the name of the country's language, and the desired population density cut-off point. The program will print the rsults in a tabular format for easy viewing and comparison.
+My application will return to the user the record of the country they entered into the application. The application will fetch the record from countries.dev API. It will then fetch other metrics from the records such as population, region, and number of languages.
 
 STEP 4
