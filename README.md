@@ -1,3 +1,32 @@
 # COUNTRY RESEARCH API
 
 ## Description
+This is a very simple application that sends GET requests to the base API endpoint https://countries.dev/countries. This API provider has very useful data on all countries in the world, and this program will consume the API by requesting for specific data of any country of choice.
+The program will ask the use to enter the name of the country they will like to do research about, and then the program will get the record of that country, and filter the information based on: region, population, and the number of official languages.
+
+## Installation
+1. Clone this repository:
+```bash
+git clone https://github.com/reneTech75/Countries_API_Research
+```
+
+2. Navigate to the project directory
+```bash
+cd Countries_API_Research
+```
+
+3. Start and activate the virtual environment
+```bash
+python -m venv .venv
+source .venv/Script/Activate
+```
+
+4. Install all dependencies
+```bash
+pip install -r requirements.txt
+```
+
+5. Run the program
+```bash
+python main.py
+```
