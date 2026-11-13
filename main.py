@@ -8,7 +8,7 @@ sys.stdout.reconfigure(encoding = 'utf-8') #this ensures that the terminal will 
 #url = "https://countries.dev/countries"
 
 #this function collects the inputs from the user at the terminal. The program stops if nothing is entered
-def get_user_inputs():
+def get_user_inputs() -> dict:
     country = input("Please enter the name of the country you are researching:\n").strip().lower() 
     if country == "":
         print("You did not enter the name of any country. ")
@@ -16,8 +16,7 @@ def get_user_inputs():
     return {"country": country}
 
 #this function fetches the record of the country of interest
-def fetch_data(user_input):
-
+def fetch_data(user_input: dict) -> list | dict:
     country = user_input["country"]
 
     # Encode the country name in a URL, this API provider doesn't accept query parameters
@@ -28,7 +27,7 @@ def fetch_data(user_input):
 
         if response.status_code == 200:
             data = response.json()
-            for record in data:
+            for record in data: #this loop is needed since we may get partial matchings(eg "united" will bring many results like united Arab Emirates, United Kingdon, united states), and thus need to filter the exact country
                 if record["name"].lower() == country:
                     return record
             return {"error": f"No exact match found for {country}"}
@@ -45,14 +44,14 @@ def fetch_data(user_input):
     except requests.exceptions.RequestException as error:
         return {"error": f"Connection error: {error}"}
 
-def get_summary(metrics):
+def get_summary(metrics: dict) -> str:
     return f"{metrics['country']} is a country in {metrics['region']}, with a population of {metrics['population']}. It has {len(metrics['languages'])} official language(s)"
     
 #this main function will direct the main logic flow of this program.
-def main():
+def main() -> None:
     user_input = get_user_inputs() #get the inputs from the user
     data = fetch_data(user_input) #get relevant records from the API provider
-    try:
+    try:# this try block succeeds only when the response object has a payload
         name = user_input["country"]
         region = data["region"]
         capital = data["capital"]
